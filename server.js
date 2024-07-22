@@ -8,8 +8,8 @@ const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 app.post('/api/referral', async (req, res) => {
 
