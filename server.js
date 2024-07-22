@@ -43,7 +43,7 @@ app.post('/api/referral', async (req, res) => {
       subject: 'Referral Confirmation',
       text: `Hi ${referral.refereeName},\n\nThank you for your referral.\n\nBest Regards`,
     };
-
+ 
     await transporter.sendMail(mailOptions);
 
     res.status(201).json(referral);
