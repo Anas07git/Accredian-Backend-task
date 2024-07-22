@@ -1,6 +1,7 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const nodemailer = require('nodemailer');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -8,19 +9,23 @@ const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cors());
 
 app.post('/api/referral', async (req, res) => {
-  const { name, email, phone, referredBy } = req.body;
+
+
+    console.log('the data from the front end ',req.body);
+  const { referrerName, referrerEmail, refereeName, refereeEmail } = req.body;
 
   // Basic validation
-  if (!name || !email || !phone || !referredBy) {
+  if (!refereeEmail || !refereeName || !referrerName || !referrerEmail) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
   try {
     // Save referral data to the database
     const referral = await prisma.referral.create({
-      data: { name, email, phone, referredBy },
+      data: { refereeEmail, refereeName, referrerName, referrerEmail },
     });
 
     // Send email notification
@@ -34,9 +39,9 @@ app.post('/api/referral', async (req, res) => {
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: referral.email,
+      to: referral.refereeEmail,
       subject: 'Referral Confirmation',
-      text: `Hi ${referral.name},\n\nThank you for your referral.\n\nBest Regards`,
+      text: `Hi ${referral.refereeName},\n\nThank you for your referral.\n\nBest Regards`,
     };
 
     await transporter.sendMail(mailOptions);

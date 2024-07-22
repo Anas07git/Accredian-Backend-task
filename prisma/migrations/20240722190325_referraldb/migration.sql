@@ -1,10 +1,10 @@
 -- CreateTable
 CREATE TABLE `Referral` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(191) NOT NULL,
-    `email` VARCHAR(191) NOT NULL,
-    `phone` VARCHAR(191) NOT NULL,
-    `referredBy` VARCHAR(191) NOT NULL,
+    `refereeEmail` VARCHAR(191) NOT NULL,
+    `refereeName` VARCHAR(191) NOT NULL,
+    `referrerName` VARCHAR(191) NOT NULL,
+    `referrerEmail` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)

@@ -9,9 +9,9 @@ generator client {
 
 model Referral {
   id        Int      @id @default(autoincrement())
-  name      String
-  email     String
-  phone     String
-  referredBy String
+  refereeEmail  String
+  refereeName   String
+  referrerName  String
+  referrerEmail String
   createdAt DateTime @default(now())
 }
