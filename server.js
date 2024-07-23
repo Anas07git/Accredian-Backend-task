@@ -41,7 +41,7 @@ app.post('/api/referral', async (req, res) => {
       from: process.env.EMAIL_USER,
       to: referral.refereeEmail,
       subject: 'Referral Confirmation',
-      text: `Hi ${referral.refereeName},\n\nThank you for your referral.\n\nBest Regards`,
+      text: `Hi ${referral.refereeName},\n\nYou have been referred by ${referral.referrerName}.\n\nBest Regards`,
     };
  
     await transporter.sendMail(mailOptions);
