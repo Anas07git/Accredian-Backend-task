@@ -27,6 +27,7 @@ app.post('/api/referral', async (req, res) => {
     const referral = await prisma.referral.create({
       data: { refereeEmail, refereeName, referrerName, referrerEmail },
     });
+    res.status(201).json(referral);
 
     // Send email notification
     const transporter = nodemailer.createTransport({
@@ -46,7 +47,6 @@ app.post('/api/referral', async (req, res) => {
  
     await transporter.sendMail(mailOptions);
 
-    res.status(201).json(referral);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while processing your referral' });
