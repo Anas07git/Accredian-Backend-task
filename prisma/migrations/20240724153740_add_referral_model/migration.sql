@@ -5,5 +5,5 @@ CREATE TABLE `Referral` (
     `referrerName` VARCHAR(191) NOT NULL,
     `referrerEmail` VARCHAR(191) NOT NULL,
 
-    PRIMARY KEY (`refereeEmail`)
+    PRIMARY KEY (`refereeName`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

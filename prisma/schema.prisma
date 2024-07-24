@@ -8,8 +8,8 @@ generator client {
 }
 
 model Referral {
-  refereeEmail  String @id
-  refereeName   String 
+  refereeEmail  String 
+  refereeName   String @id
   referrerName  String
   referrerEmail String
 }

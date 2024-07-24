@@ -8,7 +8,7 @@ const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({origin:"https://refer-and-earn-ah0jf4k0j-anas-karatelas-projects.vercel.app/"}));
 app.use(express.json());
 
 app.post('/api/referral', async (req, res) => {
