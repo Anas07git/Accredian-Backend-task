@@ -5,7 +5,13 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: "mysql://anas1:An@S2001@localhost:3306/referraldb"
+    }
+  }
+});
 const PORT = process.env.PORT || 3001;
 
 // app.use(cors({origin:"https://refer-and-earn-ah0jf4k0j-anas-karatelas-projects.vercel.app/"}));
