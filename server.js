@@ -5,7 +5,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-// const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3001;
 
 // app.use(cors({origin:"https://refer-and-earn-ah0jf4k0j-anas-karatelas-projects.vercel.app/"}));
@@ -31,10 +31,10 @@ app.post('/api/referral', async (req, res) => {
 
   try {
     // Save referral data to the database
-    // const referral = await prisma.referral.create({
-    //   data: { refereeEmail, refereeName, referrerName, referrerEmail },
-    // });
-    // res.status(201).json(referral);
+    const referral = await prisma.referral.create({
+      data: { refereeEmail, refereeName, referrerName, referrerEmail },
+    });
+    res.status(201).json(referral);
 
     // Send email notification
     const transporter = nodemailer.createTransport({
@@ -45,20 +45,20 @@ app.post('/api/referral', async (req, res) => {
       },
     });
 
-    // const mailOptions = {
-    //   from: process.env.EMAIL_USER,
-    //   to: referral.refereeEmail,
-    //   subject: 'Referral Confirmation',
-    //   text: `Hi ${referral.refereeName},\n\nYou have been referred by ${referral.referrerName}.\n\nBest Regards`,
-    // };
-    const mailOptions1 = {
+    const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: "vgarun84@gmail.com",
+      to: referral.refereeEmail,
       subject: 'Referral Confirmation',
-      text: `Hi Arun ,\n\nYou have been referred by Anas.\n\nBest Regards`,
+      text: `Hi ${referral.refereeName},\n\nYou have been referred by ${referral.referrerName}.\n\nBest Regards`,
     };
+    // const mailOptions1 = {
+    //   from: process.env.EMAIL_USER,
+    //   to: "vgarun84@gmail.com",
+    //   subject: 'Referral Confirmation',
+    //   text: `Hi Arun ,\n\nYou have been referred by Anas.\n\nBest Regards`,
+    // };
  
-    await transporter.sendMail(mailOptions1);
+    await transporter.sendMail(mailOptions);
 
   } catch (error) {
     console.error(error);
