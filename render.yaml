@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: Accredian-Backend-task
+    env: node
+    plan: free
+    buildCommand: 'npm install'
+    startCommand: 'node server.js'
+    envVars:
+      - key: DATABASE_URL
+        value: mysql://anas1:An@S2001@localhost:3306/referraldb
+      - key: GMAIL_USER
+        value: anas.karatela@gmail.com
+      - key: GMAIL_PASS
+        value: fnfbyfbjkhoseadr
