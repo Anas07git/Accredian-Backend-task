@@ -7,8 +7,10 @@ services:
     startCommand: 'npm start'
     envVars:
       - key: DATABASE_URL
-        value: mysql://anas1:An@S2001@localhost:3306/referraldb
+        sync: fasle
       - key: GMAIL_USER
-        value: anas.karatela@gmail.com
+        sync: fasle
       - key: GMAIL_PASS
-        value: fnfbyfbjkhoseadr
+        sync: fasle
+      - key: PORT
+        sync: fasle
