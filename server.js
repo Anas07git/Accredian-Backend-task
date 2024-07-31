@@ -35,6 +35,18 @@ app.post('/api/referral', async (req, res) => {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
+  // async function main() {
+  //   try {
+  //     await prisma.$connect();
+  //     console.log('Database connected successfully');
+  //   } catch (error) {
+  //     console.error('Error connecting to the database', error);
+  //   } finally {
+  //     await prisma.$disconnect();
+  //   }
+  // }
+  
+  // main();
   try {
     // Save referral data to the database
     const referral = await prisma.referral.create({
@@ -70,18 +82,6 @@ app.post('/api/referral', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'An error occurred while processing your referral' });
   }
-  async function main() {
-    try {
-      await prisma.$connect();
-      console.log('Database connected successfully');
-    } catch (error) {
-      console.error('Error connecting to the database', error);
-    } finally {
-      await prisma.$disconnect();
-    }
-  }
-  
-  main();
 });
 
 app.use((err, req, res, next) => {
