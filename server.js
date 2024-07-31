@@ -6,11 +6,11 @@ require('dotenv').config();
 
 const app = express();
 const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: "mysql://anas1:An@S2001@localhost:3306/referraldb"
-    }
-  }
+  // datasources: {
+  //   db: {
+  //     url: "mysql://anas1:An@S2001@localhost:3306/referraldb"
+  //   }
+  // }
 });
 const PORT = process.env.PORT || 3001;
 
